@@ -24,11 +24,15 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
-use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
-
 if (!defined('_PS_VERSION_')) {
     exit;
 }
+
+if (version_compare(_PS_VERSION_, '1.7.0.0', '<')) {
+    return;
+}
+
+use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 class Ps_CustomerSignIn extends Module implements WidgetInterface
 {
