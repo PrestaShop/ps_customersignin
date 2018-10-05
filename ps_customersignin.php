@@ -52,6 +52,10 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
 
     public function getWidgetVariables($hookName, array $configuration)
     {
+        if (!isset($this->context->customer)) {
+            return false;
+        }
+        
         $logged = $this->context->customer->isLogged();
 
         if ($logged) {
