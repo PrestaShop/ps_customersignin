@@ -43,9 +43,9 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
 
         parent::__construct();
 
-        $this->displayName = $this->getTranslator()->trans('Customer "Sign in" link', array(), 'Modules.Customersignin.Admin');
-        $this->description = $this->getTranslator()->trans('Adds a block that displays information about the customer.', array(), 'Modules.Customersignin.Admin');
-        $this->ps_versions_compliancy = array('min' => '1.7.1.0', 'max' => _PS_VERSION_);
+        $this->displayName = $this->getTranslator()->trans('Customer "Sign in" link', [], 'Modules.Customersignin.Admin');
+        $this->description = $this->getTranslator()->trans('Adds a block that displays information about the customer.', [], 'Modules.Customersignin.Admin');
+        $this->ps_versions_compliancy = ['min' => '1.7.1.0', 'max' => _PS_VERSION_];
 
         $this->templateFile = 'module:ps_customersignin/ps_customersignin.tpl';
     }
@@ -57,10 +57,10 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
         if ($logged) {
             $customerName = $this->getTranslator()->trans(
                 '%firstname% %lastname%',
-                array(
+                [
                     '%firstname%' => $this->context->customer->firstname,
                     '%lastname%' => $this->context->customer->lastname,
-                ),
+                ],
                 'Modules.Customersignin.Admin'
             );
         } else {
@@ -69,13 +69,13 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
 
         $link = $this->context->link;
 
-        return array(
+        return [
             'logged' => $logged,
             'customerName' => $customerName,
             'logout_url' => $link->getPageLink('index', true, null, 'mylogout'),
             'my_account_url' => $link->getPageLink('my-account', true),
 
-        );
+        ];
     }
 
     public function renderWidget($hookName, array $configuration)
