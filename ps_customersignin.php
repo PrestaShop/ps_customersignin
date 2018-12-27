@@ -81,6 +81,7 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
     public function renderWidget($hookName, array $configuration)
     {
         $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
+
         return $this->fetch($this->templateFile);
     }
 }
