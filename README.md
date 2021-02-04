@@ -1,5 +1,8 @@
 # Customer "_Sign in_" link
 
+![PHP tests](https://github.com/PrestaShop/ps_customersignin/workflows/PHP%20tests/badge.svg)
+[![Latest Stable Version](https://poser.pugx.org/PrestaShop/ps_customersignin/v)](//packagist.org/packages/PrestaShop/ps_customersignin)
+
 ## About
 
 Make your customers feel at home on your store, invite them to sign in!

@@ -43,7 +43,7 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
     {
         $this->name = 'ps_customersignin';
         $this->author = 'PrestaShop';
-        $this->version = '2.0.3';
+        $this->version = '2.0.4';
         $this->need_instance = 0;
 
         parent::__construct();
