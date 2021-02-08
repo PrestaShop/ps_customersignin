@@ -32,22 +32,40 @@ if (!defined('_PS_VERSION_')) {
 
 class Ps_CustomerSignIn extends Module implements WidgetInterface
 {
+    /**
+     * @var string Name of the module running on PS 1.6.x. Used for data migration.
+     */
+    const PS_16_EQUIVALENT_MODULE = 'blockuserinfo';
+
     private $templateFile;
 
     public function __construct()
     {
         $this->name = 'ps_customersignin';
         $this->author = 'PrestaShop';
-        $this->version = '2.0.3';
+        $this->version = '2.0.4';
         $this->need_instance = 0;
 
         parent::__construct();
 
         $this->displayName = $this->getTranslator()->trans('Customer "Sign in" link', [], 'Modules.Customersignin.Admin');
-        $this->description = $this->getTranslator()->trans('Adds a block that displays information about the customer.', [], 'Modules.Customersignin.Admin');
+        $this->description = $this->getTranslator()->trans('Make your customers feel at home on your store, invite them to sign in!', [], 'Modules.Customersignin.Admin');
         $this->ps_versions_compliancy = ['min' => '1.7.1.0', 'max' => _PS_VERSION_];
 
         $this->templateFile = 'module:ps_customersignin/ps_customersignin.tpl';
+    }
+
+    public function install()
+    {
+        // Migrate data from 1.6 equivalent module (if applicable), then uninstall
+        if (Module::isInstalled(self::PS_16_EQUIVALENT_MODULE)) {
+            $oldModule = Module::getInstanceByName(self::PS_16_EQUIVALENT_MODULE);
+            if ($oldModule) {
+                $oldModule->uninstall();
+            }
+        }
+
+        return parent::install();
     }
 
     public function getWidgetVariables($hookName, array $configuration)
