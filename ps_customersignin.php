@@ -65,7 +65,8 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
             }
         }
 
-        return parent::install();
+        return parent::install()
+            && $this->registerHook('displayNav2');
     }
 
     public function getWidgetVariables($hookName, array $configuration)
