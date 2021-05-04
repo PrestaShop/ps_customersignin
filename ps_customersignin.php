@@ -97,7 +97,7 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
             /*
             * @deprecated
             */
-            'my_account_url' => $link->getPageLink('authentication', true) . '?&back=' . Tools::secureReferrer($_SERVER['HTTP_REFERER']),
+            'my_account_url' => $link->getPageLink('authentication', true),
         ];
     }
 
