@@ -71,8 +71,52 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
 
     public function getWidgetVariables($hookName, array $configuration)
     {
+        
+        $link = $this->context->link;
+
+        // Add links to sections on my account page
+        $my_account_urls = array(
+            2 => array(
+                'title' => $this->trans('Orders', array(), 'Admin.Global'),
+                'url' => $link->getPageLink('history', true),
+            ),
+            3 => array(
+                'title' => $this->trans('Credit slips', array(), 'Modules.Customeraccountlinks.Admin'),
+                'url' => $link->getPageLink('order-slip', true),
+            ),
+            4 => array(
+                'title' => $this->trans('Addresses', array(), 'Shop.Theme.Global'),
+                'url' => $link->getPageLink('addresses', true),
+            ),
+            0 => array(
+                'title' => $this->trans('Personal info', array(), 'Modules.Customeraccountlinks.Admin'),
+                'url' => $link->getPageLink('identity', true),
+            ),
+        );
+
+        // Add returns, if enabled
+        if ((int)Configuration::get('PS_ORDER_RETURN')) {
+            $my_account_urls[1] = array(
+                'title' => $this->trans('Merchandise returns', array(), 'Modules.Customeraccountlinks.Admin'),
+                'url' => $link->getPageLink('order-follow', true),
+            );
+        }
+
+        // Add vouchers, if enabled
+        if (CartRule::isFeatureActive()) {
+            $my_account_urls[5] = array(
+                'title' => $this->trans('Vouchers', array(), 'Shop.Theme.Customeraccount'),
+                'url' => $link->getPageLink('discount', true),
+            );
+        }
+
+        // Sort Account links base in his index
+        ksort($my_account_urls);
+        
+        // Add information about logged customer
         $logged = $this->context->customer->isLogged();
 
+        // If customer is logged, we want to get his name
         if ($logged) {
             $customerName = $this->getTranslator()->trans(
                 '%firstname% %lastname%',
@@ -86,9 +130,8 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
             $customerName = '';
         }
 
-        $link = $this->context->link;
-
         return [
+            'my_account_urls' => $my_account_urls,
             'logged' => $logged,
             'customerName' => $customerName,
             /*
