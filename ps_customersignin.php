@@ -132,7 +132,6 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
 
         return [
             'my_account_urls' => $my_account_urls,
-            'logged' => $logged,
             'customerName' => $customerName,
             /*
             * @deprecated
