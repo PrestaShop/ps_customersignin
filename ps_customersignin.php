@@ -71,9 +71,10 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
 
     public function getWidgetVariables($hookName, array $configuration)
     {
-        
-        $link = $this->context->link;
 
+        $logged = $this->context->customer->isLogged();
+        $link = $this->context->link;
+  
         // Add links to sections on my account page
         $my_account_urls = array(
             2 => array(
@@ -114,7 +115,7 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
         ksort($my_account_urls);
         
         // If customer is logged, we want to get his name
-        if ($this->context->customer->isLogged()) {
+        if ($logged) {
             $customerName = $this->getTranslator()->trans(
                 '%firstname% %lastname%',
                 [
@@ -128,6 +129,10 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
         }
 
         return [
+            /*
+            * @deprecated
+            */            
+            'logged' => $logged,
             'my_account_urls' => $my_account_urls,
             'customerName' => $customerName,
             /*
