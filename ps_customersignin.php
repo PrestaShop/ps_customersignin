@@ -113,11 +113,8 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
         // Sort Account links base in his index
         ksort($my_account_urls);
         
-        // Add information about logged customer
-        $logged = $this->context->customer->isLogged();
-
         // If customer is logged, we want to get his name
-        if ($logged) {
+        if ($this->context->customer->isLogged()) {
             $customerName = $this->getTranslator()->trans(
                 '%firstname% %lastname%',
                 [
