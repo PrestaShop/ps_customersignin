@@ -89,6 +89,9 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
         $link = $this->context->link;
 
         return [
+            /*
+            * @deprecated
+            */            
             'logged' => $logged,
             'customerName' => $customerName,
             /*
