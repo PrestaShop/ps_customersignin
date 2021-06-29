@@ -91,7 +91,7 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
         return [
             /*
             * @deprecated
-            */            
+            */
             'logged' => $logged,
             'customerName' => $customerName,
             /*
