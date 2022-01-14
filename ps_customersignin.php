@@ -42,6 +42,7 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
     public function __construct()
     {
         $this->name = 'ps_customersignin';
+        $this->tab = 'front_office_features';
         $this->author = 'PrestaShop';
         $this->version = '2.0.4';
         $this->need_instance = 0;
