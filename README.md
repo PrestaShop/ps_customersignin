@@ -15,6 +15,13 @@ PrestaShop: `1.7.1.0` or later
 
 You can report issues with this module in the main PrestaShop repository. [Click here to report an issue][report-issue]. 
 
+## How to test
+
+Link to specs : https://docs.prestashop-project.org/functional-documentation/functional-documentation/ux-ui/back-office/improve/modules/customer-sign-in-link-ps_customersignin
+
+When enabled, your customer can sign into their account.
+When disabled, the Sign in button is hidden, therefore, your customers can’t log into their account
+
 ## Multistore compatibility
 
 This module is compatible with the multistore :heavy_check_mark: <br/>
